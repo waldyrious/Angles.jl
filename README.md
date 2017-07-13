@@ -1,6 +1,6 @@
 # Angles
 
-[![Build Status](https://travis-ci.org/yakir12/Angles.jl.svg?branch=master)](https://travis-ci.org/yakir12/Angles.jl)
+[![Build Status](https://travis-ci.org/yakir12/Angles.jl.svg?branch=master)](https://travis-ci.org/yakir12/Angles.jl) [![Build status](https://ci.appveyor.com/api/projects/status/2av8jox9h4a1sf2t?svg=true)](https://ci.appveyor.com/project/yakir12/angles-jl)
 
 [![Coverage Status](https://coveralls.io/repos/yakir12/Angles.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/yakir12/Angles.jl?branch=master) [![codecov.io](http://codecov.io/github/yakir12/Angles.jl/coverage.svg?branch=master)](http://codecov.io/github/yakir12/Angles.jl?branch=master)
 

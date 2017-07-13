@@ -1,3 +1,5 @@
+__precompile__()
+
 module Angles
 
 import Base: sin, sinc, asin, cos, cosc, acos, tan, atan, sec, asec, csc, acsc, cot, acot, atan2, rad2deg, deg2rad 

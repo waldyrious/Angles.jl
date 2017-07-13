@@ -13,15 +13,15 @@ for fun in (:sin, :sinc, :cos, :cosc, :tan, :sec, :csc, :cot), degree in -89:50r
 end
 
 for fun in (:sin, :cos), x in -1:rand():1
-    @test @eval $(Symbol("arc$(fun)"))($x).x ≈ $(Symbol("a$(fun)"))($x)
+    @test @eval $(Symbol("a$(fun)"))(Degree, $x).x ≈ $(Symbol("a$(fun)d"))($x)
 end
 
 for fun in (:sec, :csc), y in 1:rand():10, x in [y, -y]
-    @test @eval $(Symbol("arc$(fun)"))($x).x ≈ $(Symbol("a$(fun)"))($x)
+    @test @eval $(Symbol("a$(fun)"))(Radian, $x).x ≈ $(Symbol("a$(fun)"))($x)
 end
 
 for fun in (:tan, :cot), x in -10:2rand():10
-    @test @eval $(Symbol("arc$(fun)"))($x).x ≈ $(Symbol("a$(fun)"))($x)
+    @test @eval $(Symbol("a$(fun)"))(Radian, $x).x ≈ $(Symbol("a$(fun)"))($x)
 end
 
-@test all(arctan2(y, x) == Radian(atan2(y, x)) for x in -10:rand():10, y in -10:rand():10)
+@test all(atan2(Degree, y, x) == Degree(rad2deg(atan2(y, x))) for x in -10:rand():10, y in -10:rand():10)

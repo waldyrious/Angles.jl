@@ -1,15 +1,15 @@
 module Angles
 
-import Base: sin, sinc, cos, cosc, tan, sec, csc, cot, rad2deg, deg2rad 
+import Base: sin, sinc, asin, cos, cosc, acos, tan, atan, sec, asec, csc, acsc, cot, acot, atan2, rad2deg, deg2rad 
 
-export Angle, Degree, Radian, arcsin, arccos, arctan, arcsec, arccsc, arccot, arctan2
+export Angle, Degree, Radian
 
-abstract type Angle end
+abstract type Angle <: Number end
 
 """
-    Degree{T <: Real}(x::T)
+    Degree{T <: Number}(x::T)
 
-Wrap a `Real` number as a degree.
+Wrap a `Number` number as a degree.
 # Examples
 Define 45°:
 ```jldoctest
@@ -17,14 +17,14 @@ julia> Degree(45)
 Angles.Degree{Int64}(45)
 ```
 """
-struct Degree{T <: Real} <: Angle
+struct Degree{T <: Number} <: Angle
     x::T
 end
 
 """
-    radian{T <: Real}(x::T)
+    radian{T <: Number}(x::T)
 
-Wrap a `Real` number as a radian.
+Wrap a `Number` number as a radian.
 # Examples
 Define π radians:
 ```jldoctest
@@ -32,7 +32,7 @@ Radian(π)
 Angles.Radian{Irrational{:π}}(π = 3.1415926535897...)
 ```
 """
-struct Radian{T <: Real} <: Angle
+struct Radian{T <: Number} <: Angle
     x::T
 end
 
@@ -54,10 +54,10 @@ for fun in (:sin, :cos, :tan, :sec, :csc, :cot)
     @eval begin
         $fun(x::Degree) = $(Symbol("$(fun)d"))(x.x)
         $fun(x::Radian) = $fun(x.x)
-        $(Symbol("arc$(fun)"))(x::Number) = Radian($(Symbol("a$(fun)"))(x))
+        $(Symbol("a$(fun)"))(::Type{T}, x::Number) where {T <: Angle} = T(Radian($(Symbol("a$(fun)"))(x)))
     end
 end
 
-arctan2(y::Number, x::Number) = Radian(atan2(y, x))
+atan2(::Type{T}, y::Number, x::Number) where {T <: Angle} = T(Radian(atan2(y, x)))
 
 end # module

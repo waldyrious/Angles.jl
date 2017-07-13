@@ -6,7 +6,8 @@
 
 Is it a radian? Is it a degree? Who cares! 
 
-`Angles.jl` introduces an `Angle` type that wraps your angles as `Degree`, `Radian`, or `Proportion` (i.e. the proportion of π), making sure all the trigonometric functions work as expected. You'll never need to worry about using `sin` or `sind`.
+`Angles.jl` introduces an `Angle` type that wraps your angles as `Degree`, `Radian`, or `Proportion` (i.e. the angle's proportion of π: for example, 90° is proportion 0.5), making sure all the trigonometric functions work as expected. You'll never need to worry about using `sin` or `sind`.
+
 
 Here's an example:
 ```
@@ -31,7 +32,7 @@ julia> sin(θ)
 
 The approach `Angles.jl` takes is adding appropriate methods to `sin`, `sinc`, `cos`, `cosc`, `tan`, `sec`, `csc`, and `cot` so that they accept `Degree`, `Radian`, and `Proportion`. We excluded the `d` versions of these functions (e.g. `sind`) to keep things simple (and to avoid overriding any intended behavior by the user). 
 
-To get inverse functions, `acos`, `acot`, `acsc`, `asec`, `asin`, `atan`, and `atan2` to return a subtype of `Angle`, specify the desired angular unit as the first argument: 
+In order to get inverse functions (`acos`, `acot`, `acsc`, `asec`, `asin`, `atan`, and `atan2`) to return a subtype of `Angle`, specify the desired subtype as the first argument: 
 ```
 julia> asin(Degree, 0.5)
 Angles.Degree{Float64}(30.000000000000004)
